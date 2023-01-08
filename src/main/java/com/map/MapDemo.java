@@ -37,21 +37,29 @@ public class MapDemo {
 		answer3.setAnswer("Java has different types of framework..");
 		answer3.setQuestion(question1);
 
-		List<Answer> list = new ArrayList<Answer>();
-		list.add(answer1);
-		list.add(answer2);
-		list.add(answer3);
-
-		question1.setAnswers(list);
+		
+		  List<Answer> list = new ArrayList<Answer>(); 
+		  list.add(answer1);
+		  list.add(answer2); 
+		  list.add(answer3);
+		  
+		  question1.setAnswers(list);
+		 
+		
 
 		Session s = factory.openSession();
 		Transaction tx = s.beginTransaction();
-
-		s.save(question1);
-		s.save(answer1);
-		s.save(answer2);
-		s.save(answer3);
-
+		
+		
+		  //s.save(question1); s.save(answer1); s.save(answer2); s.save(answer3);
+		 	
+		
+		Question q = (Question) s.get(Question.class, 201);
+		System.out.println(q.getQuestionId());
+		System.out.println(q.getQuestion());
+		
+		//System.out.println(q.getAnswers().size());
+		
 		tx.commit();
 		factory.close();
 
