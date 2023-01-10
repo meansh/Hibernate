@@ -21,13 +21,21 @@ public class HQLExample {
 		System.out.println("____________________________________");
 		Transaction  tx = session.beginTransaction();
 		
-		/* Delete query */
-		String query = "update Student set city=:c where name=:n";
+		/* Update query */
+		/*
+		 * String query = "update Student set city=:c where name=:n"; Query q =
+		 * session.createQuery(query); q.setParameter("c", "Johannesberg");
+		 * q.setParameter("n", "Anshu"); int r = q.executeUpdate(); System.out.println(r
+		 * + " objects updated.");
+		 */
+		
+		/*Delete query */
+		String query = "delete from Student s where s.city=: c";
 		Query q = session.createQuery(query);
 		q.setParameter("c", "Johannesberg");
-		q.setParameter("n", "Anshu");
 		int r = q.executeUpdate();
-		System.out.println(r + " objects updated.");
+		System.out.println("Deleted: " + r);
+		
 		tx.commit();
 		session.close();
 		factory.close();
