@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import com.tut.Student;
+import org.hibernate.Transaction;
 
 public class HQLExample {
 	public static void main(String[] args) {
@@ -17,19 +18,18 @@ public class HQLExample {
 		
 		Session session = factory.openSession();
 		
-		String query = "from Student where Student.city =: x and Student.name =: n";
+		System.out.println("____________________________________");
+		Transaction  tx = session.beginTransaction();
 		
+		/* Delete query */
+		String query = "update Student set city=:c where name=:n";
 		Query q = session.createQuery(query);
-		
-		q.setParameter("x", "Noida");
+		q.setParameter("c", "Johannesberg");
 		q.setParameter("n", "Anshu");
-		
-		List<Student> list = q.getResultList(); 
-		
-		for(Student student: list) {
-			System.out.println(student.getName() + " : " + student.getCerti().getCourse());
-		}
-		
+		int r = q.executeUpdate();
+		System.out.println(r + " objects updated.");
+		tx.commit();
+		session.close();
 		factory.close();
 		
 	}
