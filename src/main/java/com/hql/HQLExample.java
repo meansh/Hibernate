@@ -1,5 +1,6 @@
 package com.hql;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -30,12 +31,22 @@ public class HQLExample {
 		 */
 		
 		/*Delete query */
-		String query = "delete from Student s where s.city=: c";
-		Query q = session.createQuery(query);
-		q.setParameter("c", "Johannesberg");
-		int r = q.executeUpdate();
-		System.out.println("Deleted: " + r);
+		/*
+		 * String query = "delete from Student s where s.city=: c"; Query q =
+		 * session.createQuery(query); q.setParameter("c", "Johannesberg"); int r =
+		 * q.executeUpdate(); System.out.println("Deleted: " + r);
+		 */
 		
+		//Execute join query
+		
+		Query q3 = session.createQuery("select q.question, q.questionId, a.answer from "
+				+ "Question as q INNER JOIN q.answers as a");
+		
+		List<Object[]> list3 = q3.getResultList();
+		
+		for(Object[] arr: list3) {
+			System.out.println(Arrays.toString(arr));
+		}
 		tx.commit();
 		session.close();
 		factory.close();

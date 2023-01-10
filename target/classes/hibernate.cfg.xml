@@ -11,12 +11,12 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
-		<mapping class="com.tut.Student" />
+		<!--<mapping class="com.tut.Student" />-->
 		<!--<mapping class="com.tut.Address" />
-		<mapping class="com.tut.Certificate" />
+		<mapping class="com.tut.Certificate" />-->
 		<mapping class="com.map.Answer" />
 		<mapping class="com.map.Question" />
-		<mapping class="com.map1.Emp" />
+		<!--<mapping class="com.map1.Emp" />
 		<mapping class="com.map1.Project"/>-->
 		
 
