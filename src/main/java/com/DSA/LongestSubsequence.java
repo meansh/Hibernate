@@ -4,28 +4,26 @@ import java.util.Arrays;
 
 public class LongestSubsequence {
 	
-	private static void longestSubsequence(int[] a) {
-		int len = a.length;
-		Arrays.sort(a);
-		int count = 0;
-		int min = a[0];
-		int max = a[len-1];
-		int k = 0;
-		for(; min<max; min++) {
-			if(a[k++] == min) {
-				count++;
-			}
-			else{
-				break;
+	private static void longestSubsequenceWithZero(int[] a) {
+		int max = 0;
+		for(int i=0; i<a.length; i++) {
+			int sum = 0;
+			for(int j=i; j<a.length; j++) {
+				sum += a[j];		
+				if(sum == 0)
+					max = Math.max(max, j-i+1);
 			}
 		}
-		System.out.println(count);
+		System.out.print(max);
 	}
 	
 	public static void main(String[] args) {
-		int a[] = new int[]{100, 200, 1, 3, 2, 4};
-		longestSubsequence(a);
+		int a[] = new int[]{9, -3, 3, -1, 6, -5};
+		longestSubsequenceWithZero(a);
 	}
+
+	
+	
 
 
 }
